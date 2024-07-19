@@ -1,0 +1,17 @@
+{
+  "name": "e2e-tests-prod-status",
+  "version": "1.0.0",
+  "description": "E2E tests to test prod",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Francois Duval",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^13.5.1"
+  },
+  "devDependencies": {
+    "jest": "^29.0.3"
+  }
+}

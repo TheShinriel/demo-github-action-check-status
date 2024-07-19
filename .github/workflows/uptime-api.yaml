@@ -1,0 +1,25 @@
+name: Production Api Status Check
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+env:
+  # API_URL: http://api.example.com/endpoint
+  API_URL: ${{ secrets.API_URL }}
+
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check API status
+        run: |
+          STATUS_CODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" ${{ env.API_URL }})
+          if [[ "$STATUS_CODE" -ne 200 ]]; then
+            echo "API is down. Status code: ${STATUS_CODE}"
+            exit 1
+          else
+            echo "API is up. Status code: ${STATUS_CODE}"
+          fi
